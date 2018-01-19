@@ -11,6 +11,7 @@ var express         = require("express"),
     seedDB          = require("./seeds"),
     port            = process.env.PORT,
     ip              = process.env.IP;
+    
 
 // requiring routes
 var commentRoutes       = require("./routes/comments"),
@@ -21,8 +22,8 @@ var commentRoutes       = require("./routes/comments"),
 var app = express();
 
 //connect to mongoose
-mongoose.connect(process.env.DBURI);
-//mongoose.connect("mongodb://localhost/yelp_camp");
+var databaseURL = process.env.DBURI || "mongodb://localhost/yelp_camp";
+mongoose.connect(databaseURL);
 
 //set up middleware
 app.set("view engine", "ejs");
